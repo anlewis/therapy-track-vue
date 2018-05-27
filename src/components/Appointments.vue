@@ -5,8 +5,9 @@
         <h2><strong>{{appointment.summary}}</strong></h2>
         <p>{{formatDate(appointment.start_time)}}</p>
         <p>{{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}</p>
-        <p>Location: {{appointment.location}}</p>
-        <button v-on:click="appointmentDetails">Details</button>
+        <router-link class="details-link" :to="{ name: 'Appointment', params: { id: appointment.id } }">
+          Details
+        </router-link>
       </div>
   </div>
 </template>
@@ -19,6 +20,7 @@ export default {
   data() {
     return {
       appointments: [],
+      id: [],
       summary: [],
       location: [],
       start_time: [],
@@ -64,5 +66,16 @@ export default {
 
   p {
     margin: 5px;
+  }
+
+  .details-link {
+    display: inline-block;
+    background-color: #58808F;
+    color: #F9F8E8;
+    margin-bottom: 8px;
+    font-size: 14px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    text-decoration: none;
   }
 </style>
