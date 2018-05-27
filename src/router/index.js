@@ -15,7 +15,7 @@ export default new Router({
     {
       path: '/appointments',
       name: 'Appointments',
-      component: Appointments
-    }
+      component: Appointments,
+    },
   ],
 });

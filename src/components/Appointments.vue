@@ -7,25 +7,26 @@
 </template>
 
 <script>
-  import axios from 'axios'
-  export default {
-    data() {
-      return {
-        appointments: [],
-        summary: [],
-        errors: []
-      }
-    },
-    created() {
-      axios.get('localhost:3000/api/v1/appointments') 
-      .then(response => {
-        this.appointments = response.data
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      appointments: [],
+      summary: [],
+      errors: [],
+    };
+  },
+  created() {
+    axios.get('localhost:3000/api/v1/appointments')
+      .then((response) => {
+        this.appointments = response.data;
       })
-      .catch(e => {
-        this.error.push(e)
-      })
-    },
-  }
+      .catch((e) => {
+        this.error.push(e);
+      });
+  },
+};
 </script>
 
 <style>
