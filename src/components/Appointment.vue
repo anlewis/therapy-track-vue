@@ -1,13 +1,10 @@
 <template>
-  <div class="appointments">
-    <h1 class="title">Appointments</h1>
-      <div v-for="(appointment) in appointments" :key="appointment.id" class="appointment">
-        <h2><strong>{{appointment.summary}}</strong></h2>
-        <p>{{formatDate(appointment.start_time)}}</p>
-        <p>{{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}</p>
-        <p>Location: {{appointment.location}}</p>
-        <button v-on:click="appointmentDetails">Details</button>
-      </div>
+  <div class="appointment">
+    <h2><strong>{{appointment.summary}}</strong></h2>
+    <p>{{formatDate(appointment.start_time)}}</p>
+    <p>{{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}</p>
+    <p>Location: {{appointment.location}}</p>
+    <p>Notes: {{appointment.description}}</p>
   </div>
 </template>
 
@@ -18,18 +15,19 @@ import moment from 'moment';
 export default {
   data() {
     return {
-      appointments: [],
+      appointment: [],
       summary: [],
       location: [],
+      description: [],
       start_time: [],
       end_time: [],
       errors: [],
     };
   },
   created() {
-    axios.get('http://localhost:3000/api/v1/appointments')
+    axios.get(`http://localhost:3000/api/v1/appointments/${this.$route.params.id}`)
       .then((response) => {
-        this.appointments = response.data;
+        this.appointment = response.data;
       })
       .catch((e) => {
         this.error.push(e);
@@ -43,9 +41,6 @@ export default {
     formatTime(iso8601) {
       const dateTime = new Date(iso8601);
       return moment(dateTime).format('h:mm a');
-    },
-    appointmentDetails() {
-
     },
   },
 };
