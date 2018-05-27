@@ -1,10 +1,10 @@
 <template>
   <div class="appointment">
     <h2><strong>{{appointment.summary}}</strong></h2>
-    <p>{{formatDate(appointment.start_time)}}</p>
+    <p><strong>{{formatDate(appointment.start_time)}}</strong></p>
     <p>{{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}</p>
     <p>Location: {{appointment.location}}</p>
-    <p>Notes: {{appointment.description}}</p>
+    <p class="notes">{{appointment.description}}</p>
   </div>
 </template>
 
@@ -59,5 +59,14 @@ export default {
 
   p {
     margin: 5px;
+  }
+
+  .notes {
+    background-color: #F9F8E8;
+    border: medium inset #DEE5E5;
+    display: inline-block;
+    justify-content: center;
+    width: 40%;
+    margin-bottom: 10px;
   }
 </style>
