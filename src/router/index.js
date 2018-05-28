@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import HelloWorld from '@/components/HelloWorld';
 import Appointments from '@/components/Appointments';
 import Appointment from '@/components/Appointment';
+import AppointmentUpdate from '@/components/AppointmentUpdate';
 
 Vue.use(Router);
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/appointments/:id',
       name: 'Appointment',
       component: Appointment,
+    },
+    {
+      path: '/appointments/update/:id',
+      name: 'AppointmentUpdate',
+      component: AppointmentUpdate,
     },
   ],
 });
