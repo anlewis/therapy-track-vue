@@ -1,6 +1,6 @@
 <template>
   <div class="appointmentUpdate">
-    <h2>Appointment Update Form</h2>
+    <h2>Appointment New Form</h2>
     <form class="vue-form" @submit.prevent="handleSubmit">
       <fieldset class="updateFields">
         <div>
@@ -25,7 +25,7 @@
         </div>
 
         <div>
-          <input class="submitButton" type="submit" value="Update Appointment">
+          <input class="submitButton" type="submit" value="Create Appointment">
         </div>
       </fieldset>
     </form>
@@ -52,20 +52,11 @@ export default {
       }
     }
   },
-  created() {
-    axios.get(`http://localhost:3000/api/v1/appointments/${this.$route.params.id}`)
-      .then((response) => {
-        this.appointment = response.data;
-      })
-      .catch((e) => {
-        this.error.push(e);
-      });
-  },
   methods: {
     handleSubmit() {
       this.form.submitted = true;
-      axios.patch(
-        `http://localhost:3000/api/v1/appointments/${this.$route.params.id}`, {
+      axios.post(
+        'http://localhost:3000/api/v1/appointments', {
           'summary': this.form.summary,
           'location': this.form.location,
           'description': this.form.description,
@@ -73,7 +64,7 @@ export default {
           'end_time': this.form.end_time,  
         })
         .then((response) => {
-          router.push({ name: "Appointment", params: { id: this.$route.params.id } })
+          router.push({ name: "Appointments" })
         })
         .catch((e) => {
           this.error.push(e);
