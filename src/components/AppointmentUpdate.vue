@@ -1,27 +1,27 @@
 <template>
   <div class="appointmentUpdate">
     <h2>Appointment Update Form</h2>
-    <form class="vue-form" @submit.prevent="submit">
+    <form class="vue-form" @submit.prevent="handleSubmit">
       <fieldset class="updateFields">
         <div>
           <label class="label" for="name">Name</label>
-          <input class="field" type="text" name="name" id="name" required="" v-model="summary.value">
+          <input class="field" type="text" name="name" id="name" required="" v-model="form.summary">
         </div>
         <div>
           <label class="label" for="start_time">Start Time</label>
-          <input class="field" type="datetime-local" name="start_time" id="start_time" required="" v-model="start_time.value">
+          <input class="field" type="datetime-local" name="start_time" id="start_time" required="" v-model="form.start_time">
         </div>
         <div>
           <label class="label" for="end_time">End Time</label>
-          <input class="field" type="datetime-local" name="end_time" id="end_time" required="" v-model="end_time.value">
+          <input class="field" type="datetime-local" name="end_time" id="end_time" required="" v-model="form.end_time">
         </div>
         <div>
           <label class="label" for="location">Location</label>
-          <input class="field" type="text" name="location" id="location" required="" v-model="location.value">
+          <input class="field" type="text" name="location" id="location" required="" v-model="form.location">
         </div>
         <div>
           <label class="label" for="description">Description</label>
-          <textarea class="field" name="description" id="description" required="" v-model="description.value"></textarea>
+          <textarea class="field" name="description" id="description" required="" v-model="form.description"></textarea>
         </div>
 
         <div>
@@ -35,19 +35,22 @@
 <script>
 import axios from 'axios';
 import moment from 'moment';
+import router from '../router';
 
 export default {
-  data() {
+  data() { 
     return {
-      appointment: [],
-      summary: [],
-      location: [],
-      description: [],
-      start_time: [],
-      end_time: [],
-      submitted: false,
-      errors: [],
-    };
+      form: {
+        appointment: [],
+        summary: [],
+        location: [],
+        description: [],
+        start_time: [],
+        end_time: [],
+        submitted: false,
+        errors: [],
+      }
+    }
   },
   created() {
     axios.get(`http://localhost:3000/api/v1/appointments/${this.$route.params.id}`)
@@ -59,9 +62,24 @@ export default {
       });
   },
   methods: {
-    submit() {
-      this.submitted = true;
+    handleSubmit() {
+      this.form.submitted = true;
+      axios.patch(
+        `http://localhost:3000/api/v1/appointments/${this.$route.params.id}`, {
+          'summary': this.form.summary,
+          'location': this.form.location,
+          'description': this.form.description,
+          'start_time': this.form.start_time,
+          'end_time': this.form.end_time,  
+        })
+        .then((response) => {
+          router.push({ name: "Appointment", params: { id: this.$route.params.id } })
+        })
+        .catch((e) => {
+          this.error.push(e);
+        });
     },
+    
     formatDate(iso8601) {
       const dateTime = new Date(iso8601);
       return moment(dateTime).format('dddd, MMMM Do YYYY');
@@ -70,9 +88,6 @@ export default {
       const dateTime = new Date(iso8601);
       return moment(dateTime).format('h:mm a');
     },
-    // sendForm() {
-    //   this.willvalidate( document.querySelector("#form") ) ? console.log("ok") : console.log("error")
-    // },
   },
 };
 </script>

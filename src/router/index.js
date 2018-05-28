@@ -25,7 +25,7 @@ export default new Router({
       component: Appointment,
     },
     {
-      path: '/appointments/update/:id',
+      path: '/appointments/:id/edit',
       name: 'AppointmentUpdate',
       component: AppointmentUpdate,
     },

@@ -5,6 +5,10 @@
     <p>{{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}</p>
     <p>Location: {{appointment.location}}</p>
     <p class="notes">{{appointment.description}}</p>
+    <br/>
+    <router-link class="update-link" :to="{ name: 'AppointmentUpdate', params: { id: appointment.id } }">
+      Update
+    </router-link>
   </div>
 </template>
 
@@ -68,5 +72,16 @@ export default {
     justify-content: center;
     width: 40%;
     margin-bottom: 10px;
+  }
+
+  .update-link {
+    display: inline-block;
+    background-color: #58808F;
+    color: #F9F8E8;
+    margin-bottom: 8px;
+    font-size: 14px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    text-decoration: none;
   }
 </style>
