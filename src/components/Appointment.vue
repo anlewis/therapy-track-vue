@@ -9,6 +9,9 @@
     <router-link class="update-link" :to="{ name: 'AppointmentUpdate', params: { id: appointment.id } }">
       Update
     </router-link>
+    <router-link class="delete-link" :to="{ name: 'AppointmentDelete', params: { id: appointment.id } }">
+      Delete
+    </router-link>
   </div>
 </template>
 
@@ -77,6 +80,17 @@ export default {
   .update-link {
     display: inline-block;
     background-color: #58808F;
+    color: #F9F8E8;
+    margin-bottom: 8px;
+    font-size: 14px;
+    padding: 5px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+  }
+
+  .delete-link {
+    display: inline-block;
+    background-color: #800000;
     color: #F9F8E8;
     margin-bottom: 8px;
     font-size: 14px;
