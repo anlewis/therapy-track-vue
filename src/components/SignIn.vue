@@ -70,6 +70,19 @@ export default {
       this.error = 'Signin failed!'
       delete localStorage.token
     },
+    created () {
+      this.checkCurrentSignin()
+    },
+    updated () {
+      this.checkCurrentSignin()
+    },
+    methods: {
+      checkCurrentSignin () {
+        if (localStorage.token) {
+          this.$router.replace(this.$route.query.redirect || '/')
+        }
+      },
+    },
   },
 };
 </script>
