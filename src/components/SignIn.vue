@@ -39,11 +39,10 @@ export default {
     handleSubmit() {
       this.form.submitted = true;
       axios.post(
-        'http://localhost:3000//users/sign_in', {
-          user: {
-            'email': this.form.email,
-            'password': this.form.password,
-          } 
+        'http://localhost:3000//auth/sign_in', {
+          'email': this.form.email,
+          'password': this.form.password,
+          'error': false, 
         })
         .then((response) => {
           router.push({ name: "Home" })
@@ -52,10 +51,25 @@ export default {
           this.error.push(e);
         });
     },
-    login () {
-      console.log(this.email)
-      console.log(this.password)
-    }
+    signin () {
+      // $http makes available in all components
+      this.$http.post('/auth', { user: this.email, password: this.password })
+        .then(request => this.signinSuccessful(request))
+        .catch(() => this.signinFailed())
+    },
+    signinSuccessful (req) {
+      if (!req.data.token) {
+        this.signinFailed()
+        return
+      }
+      localStorage.token = req.data.token
+      this.error = false
+      this.$router.replace(this.$route.query.redirect || '/auth/sign_in')
+    },
+    signinFailed () {
+      this.error = 'Signin failed!'
+      delete localStorage.token
+    },
   },
 };
 </script>

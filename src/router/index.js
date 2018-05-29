@@ -19,12 +19,12 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/users/sign_in',
+      path: '/auth/sign_in',
       name: 'SignIn',
       component: SignIn,
     },
     {
-      path: '/users/sign_up',
+      path: '/auth/sign_up',
       name: 'SignUp',
       component: SignUp,
     },
