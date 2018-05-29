@@ -28,8 +28,8 @@ export default {
   data() { 
     return {
       form: {
-        email: [],
-        password: [],
+        email: '',
+        password: '',
         submitted: false,
         errors: [],
       }
@@ -52,6 +52,10 @@ export default {
           this.error.push(e);
         });
     },
+    login () {
+      console.log(this.email)
+      console.log(this.password)
+    }
   },
 };
 </script>
