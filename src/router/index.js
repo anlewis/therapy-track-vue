@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/components/Home';
+import SignIn from '@/components/SignIn';
+import SignUp from '@/components/SignUp';
 import Appointments from '@/components/Appointments';
 import Appointment from '@/components/Appointment';
 import AppointmentNew from '@/components/AppointmentNew';
@@ -15,6 +17,16 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home,
+    },
+    {
+      path: '/users/sign_in',
+      name: 'SignIn',
+      component: SignIn,
+    },
+    {
+      path: '/users/sign_up',
+      name: 'SignUp',
+      component: SignUp,
     },
     {
       path: '/appointments',
@@ -41,10 +53,5 @@ export default new Router({
       name: 'AppointmentDelete',
       component: AppointmentDelete,
     },
-    // {
-    //   path: '/appointments/:id/delete',
-    //   name: 'AppointmentDelete',
-    //   component: AppointmentDelete,
-    // },
   ],
 });
