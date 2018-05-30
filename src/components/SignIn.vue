@@ -6,11 +6,13 @@
       <fieldset class="signInFields">
         <div>
           <label class="label" for="email">Email</label>
-          <input class="field" type="email" name="email" id="email" required="" v-model="form.email">
+          <input class="field" type="email" name="email"
+            id="email" required="" v-model="form.email">
         </div>
         <div>
           <label class="label" for="password">Password</label>
-          <input class="field" type="password" name="password" id="password" required="" v-model="form.password">
+          <input class="field" type="password" name="password"
+            id="password" required="" v-model="form.password">
         </div>
 
         <div>
@@ -24,32 +26,33 @@
 <script>
 import axios from '@/backend/axios';
 import router from '../router';
+
 export default {
-  data() { 
+  data() {
     return {
       form: {
         email: [],
         password: [],
         submitted: false,
         errors: [],
-      }
-    }
+      },
+    };
   },
   methods: {
     handleSubmit() {
       this.form.submitted = true;
       axios.post(
         'http://localhost:3000/auth/sign_in', {
-          'email': this.form.email,
-          'password': this.form.password,
+          email: this.form.email,
+          password: this.form.password,
         })
         .then((response) => {
           localStorage.accessToken = response.headers['access-token'];
           localStorage.tokenType = response.headers['token-type'];
-          localStorage.client = response.headers['client'];
-          localStorage.expiry = response.headers['expiry'];
-          localStorage.uid = response.headers['uid'];
-          router.push({ name: 'Home'});
+          localStorage.client = response.headers.client;
+          localStorage.expiry = response.headers.expiry;
+          localStorage.uid = response.headers.uid;
+          router.push({ name: 'Home' });
         })
         .catch((e) => {
           this.error.push(e);
