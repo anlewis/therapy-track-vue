@@ -7,5 +7,9 @@ export default axios.create({
   headers: {
     'Content-Type': 'application/json',
     'access-token': localStorage.accessToken,
+    'token-type': localStorage.tokenType,
+    client: localStorage.client,
+    expiry: localStorage.expiry,
+    uid: localStorage.uid,
   },
 });

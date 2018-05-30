@@ -45,7 +45,11 @@ export default {
         })
         .then((response) => {
           localStorage.accessToken = response.headers['access-token'];
-          router.push({ name: 'user'});
+          localStorage.tokenType = response.headers['token-type'];
+          localStorage.client = response.headers['client'];
+          localStorage.expiry = response.headers['expiry'];
+          localStorage.uid = response.headers['uid'];
+          router.push({ name: 'Home'});
         })
         .catch((e) => {
           this.error.push(e);
