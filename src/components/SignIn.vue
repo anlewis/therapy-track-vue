@@ -84,12 +84,10 @@ export default {
     updated () {
       this.checkCurrentSignin()
     },
-    methods: {
-      checkCurrentSignin () {
-        if (this.currentUser) {
-          this.$router.replace(this.$route.query.redirect || '/')
-        }
-      },
+    checkCurrentSignin () {
+      if (this.currentUser) {
+        this.$router.replace(this.$route.query.redirect || '/auth/sign_in')
+      }
     },
   },
 };

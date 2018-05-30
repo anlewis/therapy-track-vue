@@ -14,7 +14,7 @@ const getters = {
 }
 
 const mutations = {
-  [MutationTypes.SINGIN](state) {
+  [MutationTypes.SIGNIN](state) {
     state.user = User.from(localStorage.token)
   },
   [MutationTypes.SIGNOUT](state) {
