@@ -23,8 +23,11 @@
 
 <script>
 import axios from 'axios';
+import { mapGetters } from 'vuex'
 import router from '../router';
+
 export default {
+  name: 'SignIn',
   data() { 
     return {
       form: {
@@ -34,6 +37,9 @@ export default {
         errors: [],
       }
     }
+  },
+    computed: {
+    ...mapGetters({ currentUser: 'currentUser' })
   },
   methods: {
     handleSubmit() {
@@ -64,10 +70,12 @@ export default {
       }
       localStorage.token = req.data.token
       this.error = false
+      this.$store.dispatch('signin')
       this.$router.replace(this.$route.query.redirect || '/auth/sign_in')
     },
     signinFailed () {
       this.error = 'Signin failed!'
+      this.$store.dispatch('signout')
       delete localStorage.token
     },
     created () {
@@ -78,7 +86,7 @@ export default {
     },
     methods: {
       checkCurrentSignin () {
-        if (localStorage.token) {
+        if (this.currentUser) {
           this.$router.replace(this.$route.query.redirect || '/')
         }
       },
