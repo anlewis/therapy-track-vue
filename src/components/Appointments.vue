@@ -7,8 +7,12 @@
       <div v-for="(appointment) in appointments" :key="appointment.id" class="appointment">
         <h2><strong>{{appointment.summary}}</strong></h2>
         <p>{{formatDate(appointment.start_time)}}</p>
-        <p>{{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}</p>
-        <router-link class="details-link" :to="{ name: 'Appointment', params: { id: appointment.id } }">
+        <p>
+          {{formatTime(appointment.start_time)}} -
+          {{formatTime(appointment.end_time)}}
+        </p>
+        <router-link class="details-link" :to="{ name: 'Appointment',
+          params: { id: appointment.id } }">
           Details
         </router-link>
       </div>

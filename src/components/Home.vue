@@ -12,11 +12,12 @@
 
 <script>
 import axios from 'axios';
+
 export default {
   data() {
     return {
-      data: []
-    }
+      data: [],
+    };
   },
   created() {
     axios.get('http://localhost:3000/')

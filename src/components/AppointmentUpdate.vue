@@ -5,23 +5,28 @@
       <fieldset class="updateFields">
         <div>
           <label class="label" for="name">Name</label>
-          <input class="field" type="text" name="name" id="name" required="" v-model="form.summary">
+          <input class="field" type="text" name="name"
+          id="name" required="" v-model="form.summary">
         </div>
         <div>
           <label class="label" for="start_time">Start Time</label>
-          <input class="field" type="datetime-local" name="start_time" id="start_time" required="" v-model="form.start_time">
+          <input class="field" type="datetime-local" name="start_time"
+          id="start_time" required="" v-model="form.start_time">
         </div>
         <div>
           <label class="label" for="end_time">End Time</label>
-          <input class="field" type="datetime-local" name="end_time" id="end_time" required="" v-model="form.end_time">
+          <input class="field" type="datetime-local" name="end_time"
+          id="end_time" required="" v-model="form.end_time">
         </div>
         <div>
           <label class="label" for="location">Location</label>
-          <input class="field" type="text" name="location" id="location" required="" v-model="form.location">
+          <input class="field" type="text" name="location"
+          id="location" required="" v-model="form.location">
         </div>
         <div>
           <label class="label" for="description">Description</label>
-          <textarea class="field" name="description" id="description" required="" v-model="form.description"></textarea>
+          <textarea class="field" name="description"
+          id="description" required="" v-model="form.description"></textarea>
         </div>
 
         <div>
@@ -34,11 +39,10 @@
 
 <script>
 import axios from 'axios';
-import moment from 'moment';
 import router from '../router';
 
 export default {
-  data() { 
+  data() {
     return {
       form: {
         appointment: [],
@@ -49,8 +53,8 @@ export default {
         end_time: [],
         submitted: false,
         errors: [],
-      }
-    }
+      },
+    };
   },
   created() {
     axios.get(`http://localhost:3000/api/v1/appointments/${this.$route.params.id}`)
@@ -66,14 +70,14 @@ export default {
       this.form.submitted = true;
       axios.patch(
         `http://localhost:3000/api/v1/appointments/${this.$route.params.id}`, {
-          'summary': this.form.summary,
-          'location': this.form.location,
-          'description': this.form.description,
-          'start_time': this.form.start_time,
-          'end_time': this.form.end_time,  
+          summary: this.form.summary,
+          location: this.form.location,
+          description: this.form.description,
+          start_time: this.form.start_time,
+          end_time: this.form.end_time,
         })
-        .then((response) => {
-          router.push({ name: "Appointment", params: { id: this.$route.params.id } })
+        .then(() => {
+          router.push({ name: 'Appointment', params: { id: this.$route.params.id } });
         })
         .catch((e) => {
           this.error.push(e);

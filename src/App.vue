@@ -10,20 +10,20 @@ import { mapGetters } from 'vuex';
 export default {
   name: 'App',
   computed: {
-    ...mapGetters({ currentUser: 'currentUser' })
+    ...mapGetters({ currentUser: 'currentUser' }),
   },
-  created () {
-    this.checkCurrentSignin()
+  created() {
+    this.checkCurrentSignin();
   },
-  updated () {
-    this.checkCurrentSignin()
+  updated() {
+    this.checkCurrentSignin();
   },
   methods: {
-    checkCurrentSignin () {
+    checkCurrentSignin() {
       if (!this.currentUser && this.$route.path !== '/') {
-        this.$router.push('/?redirect=' + this.$route.path)
+        this.$router.push(`/?redirect=${this.$route.path}`);
       }
-    }
+    },
   },
 };
 </script>

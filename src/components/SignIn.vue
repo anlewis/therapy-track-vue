@@ -6,11 +6,13 @@
       <fieldset class="signInFields">
         <div>
           <label class="label" for="email">Email</label>
-          <input class="field" type="email" name="email" id="email" required="" v-model="form.email">
+          <input class="field" type="email" name="email"
+          id="email" required="" v-model="form.email">
         </div>
         <div>
           <label class="label" for="password">Password</label>
-          <input class="field" type="password" name="password" id="password" required="" v-model="form.password">
+          <input class="field" type="password" name="password"
+          id="password" required="" v-model="form.password">
         </div>
 
         <div>
@@ -23,70 +25,70 @@
 
 <script>
 import axios from 'axios';
-import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 import router from '../router';
 
 export default {
   name: 'SignIn',
-  data() { 
+  data() {
     return {
       form: {
         email: '',
         password: '',
         submitted: false,
         errors: [],
-      }
-    }
+      },
+    };
   },
-    computed: {
-    ...mapGetters({ currentUser: 'currentUser' })
+  computed: {
+    ...mapGetters({ currentUser: 'currentUser' }),
   },
   methods: {
     handleSubmit() {
       this.form.submitted = true;
       axios.post(
         'http://localhost:3000//auth/sign_in', {
-          'email': this.form.email,
-          'password': this.form.password,
-          'error': false, 
+          email: this.form.email,
+          password: this.form.password,
+          error: false,
         })
-        .then((response) => {
-          router.push({ name: "Home" })
+        .then(() => {
+          router.push({ name: 'Home' });
         })
         .catch((e) => {
           this.error.push(e);
         });
     },
-    signin () {
+    signin() {
       // $http makes available in all components
       this.$http.post('/auth', { user: this.email, password: this.password })
         .then(request => this.signinSuccessful(request))
-        .catch(() => this.signinFailed())
+        .catch(() => this.signinFailed());
     },
-    signinSuccessful (req) {
+    signinSuccessful(req) {
       if (!req.data.token) {
-        this.signinFailed()
-        return
+        this.signinFailed();
+        return;
       }
-      localStorage.token = req.data.token
-      this.error = false
-      this.$store.dispatch('signin')
-      this.$router.replace(this.$route.query.redirect || '/auth/sign_in')
+      localStorage.token = req.data.token;
+      this.error = false;
+      this.$store.dispatch('signin');
+      this.$router.replace(this.$route.query.redirect || '/auth/sign_in');
     },
-    signinFailed () {
-      this.error = 'Signin failed!'
-      this.$store.dispatch('signout')
-      delete localStorage.token
+    signinFailed() {
+      this.error = 'Signin failed!';
+      this.$store.dispatch('signout');
+      delete localStorage.token;
     },
-    created () {
-      this.checkCurrentSignin()
+    created() {
+      this.checkCurrentSignin();
     },
-    updated () {
-      this.checkCurrentSignin()
+    updated() {
+      this.checkCurrentSignin();
     },
-    checkCurrentSignin () {
+    checkCurrentSignin() {
       if (this.currentUser) {
-        this.$router.replace(this.$route.query.redirect || '/auth/sign_in')
+        this.$router.replace(this.$route.query.redirect || '/auth/sign_in');
       }
     },
   },
