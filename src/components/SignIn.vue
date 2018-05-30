@@ -2,7 +2,7 @@
   <div class="sign-up">
     <h1>Please Sign In</h1>
 
-    <form class="vue-form" @submit.prevent="handleSubmit">
+    <form class="vue-form" @submit.prevent="signin">
       <fieldset class="signInFields">
         <div>
           <label class="label" for="email">Email</label>
@@ -40,6 +40,12 @@ export default {
       },
     };
   },
+  created() {
+    this.checkCurrentSignin();
+  },
+  updated() {
+    this.checkCurrentSignin();
+  },
   computed: {
     ...mapGetters({ currentUser: 'currentUser' }),
   },
@@ -47,10 +53,9 @@ export default {
     handleSubmit() {
       this.form.submitted = true;
       axios.post(
-        'http://localhost:3000//auth/sign_in', {
+        'http://localhost:3000/auth/sign_in', {
           email: this.form.email,
           password: this.form.password,
-          error: false,
         })
         .then(() => {
           router.push({ name: 'Home' });
@@ -62,7 +67,7 @@ export default {
     signin() {
       // $http makes available in all components
       this.$http.post('/auth', { user: this.email, password: this.password })
-        .then(request => this.signinSuccessful(request))
+        .then((request => this.signinSuccessful(request)))
         .catch(() => this.signinFailed());
     },
     signinSuccessful(req) {
@@ -70,25 +75,19 @@ export default {
         this.signinFailed();
         return;
       }
-      localStorage.token = req.data.token;
       this.error = false;
+      localStorage.token = req.data.token;
       this.$store.dispatch('signin');
-      this.$router.replace(this.$route.query.redirect || '/auth/sign_in');
+      this.$router.replace(this.$route.query.redirect || '/appointments');
     },
     signinFailed() {
       this.error = 'Signin failed!';
       this.$store.dispatch('signout');
       delete localStorage.token;
     },
-    created() {
-      this.checkCurrentSignin();
-    },
-    updated() {
-      this.checkCurrentSignin();
-    },
     checkCurrentSignin() {
       if (this.currentUser) {
-        this.$router.replace(this.$route.query.redirect || '/auth/sign_in');
+        this.$router.replace(this.$route.query.redirect || '/appointments');
       }
     },
   },

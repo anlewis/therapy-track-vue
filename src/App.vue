@@ -19,11 +19,11 @@ export default {
     this.checkCurrentSignin();
   },
   methods: {
-    checkCurrentSignin() {
+    checkCurrentSignin () {
       if (!this.currentUser && this.$route.path !== '/') {
-        this.$router.push(`/?redirect=${this.$route.path}`);
+        this.$router.push(`/?redirect=${this.$route.path}`)
       }
-    },
+    }
   },
 };
 </script>
