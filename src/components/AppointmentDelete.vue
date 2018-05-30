@@ -2,7 +2,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/backend/axios';
 import router from '../router';
 
 export default {
