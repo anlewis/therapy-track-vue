@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '@/backend/axios';
 import moment from 'moment';
 import router from '../router';
 
