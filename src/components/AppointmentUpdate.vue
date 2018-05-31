@@ -1,39 +1,57 @@
 <template>
   <div class="appointmentUpdate">
-    <h2>Appointment Update Form</h2>
-    <form class="vue-form" @submit.prevent="handleSubmit">
-      <fieldset class="updateFields">
-        <div>
-          <label class="label" for="name">Name</label>
-          <input class="field" type="text" name="name"
-            id="name" required="" v-model="form.summary">
-        </div>
-        <div>
-          <label class="label" for="start_time">Start Time</label>
-          <input class="field" type="datetime-local" name="start_time"
-            id="start_time" required="" v-model="form.start_time">
-        </div>
-        <div>
-          <label class="label" for="end_time">End Time</label>
-          <input class="field" type="datetime-local" name="end_time"
-            id="end_time" required="" v-model="form.end_time">
-        </div>
-        <div>
-          <label class="label" for="location">Location</label>
-          <input class="field" type="text" name="location"
-            id="location" required="" v-model="form.location">
-        </div>
-        <div>
-          <label class="label" for="description">Description</label>
-          <textarea class="field" name="description"
-            id="description" required="" v-model="form.description"></textarea>
-        </div>
-
-        <div>
-          <input class="submitButton" type="submit" value="Update Appointment">
-        </div>
-      </fieldset>
-    </form>
+    <h2>Appointment Details</h2>
+      <b-form @submit.prevent="handleSubmit">
+      <b-form-group id="nameInputGroup"
+                    label="Name"
+                    label-for="name">
+        <b-form-input id="nameInput"
+                      type="text"
+                      v-model="form.summary"
+                      required
+                      placeholder="Enter name">
+        </b-form-input>
+      </b-form-group>
+      <b-form-group id="startInputGroup"
+                    label="Appointment Start Time"
+                    label-for="start_time">
+        <b-form-input id="startInput"
+                      type="datetime-local"
+                      v-model="form.start_time"
+                      required>
+        </b-form-input>
+      </b-form-group>
+      <b-form-group id="endInputGroup"
+                    label="Appointment End Time"
+                    label-for="end_time">
+        <b-form-input id="endInput"
+                      type="datetime-local"
+                      v-model="form.end_time"
+                      required>
+        </b-form-input>
+      </b-form-group>
+      <b-form-group id="locationInputGroup"
+                    label="Location"
+                    label-for="location">
+        <b-form-input id="locationInput"
+                      type="text"
+                      v-model="form.location"
+                      required
+                      placeholder="Enter location">
+        </b-form-input>
+      </b-form-group>
+      <b-form-group id="descriptionInputGroup"
+                    label="Description"
+                    label-for="description">
+        <b-form-textarea id="descriptionInput"
+                         v-model="form.description"
+                         placeholder="Enter description"
+                         :rows="3"
+                         :max-rows="6">
+        </b-form-textarea>
+      </b-form-group>
+      <b-button type="submit" variant="warning">Update Appointment</b-button>
+    </b-form>
   </div>
 </template>
 
@@ -48,7 +66,7 @@ export default {
         appointment: [],
         summary: [],
         location: [],
-        description: [],
+        description: '',
         start_time: [],
         end_time: [],
         submitted: false,
@@ -92,57 +110,7 @@ export default {
     background-color: #DEE5E5;
   }
 
-  .updateFields {
-    background-color: #F9F8E8;
-    border: thick double #58808F;
-    margin: 5% 5%;
-  }
-
-  .vue-form fieldset {
-    width: 60%;
-    margin: 24px 0 0 0;
-  }
-
-  .vue-form {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-  }
-
-  .vue-form div {
-    position: relative;
-    margin: 20px 0;
-  }
-
-  .vue-form .label {
-    text-align: left;
-    display: block;
-    margin: 0 15%;
-  }
-
-  .vue-form .field {
-    width: 40%;
-    text-align: left;
-    display: block;
-    margin: 0 15%;
-  }
-
-  .vue-form .submitButton {
-    text-align: left;
-    display: block;
-    margin: 0 15%;
-  }
-
   p {
     margin: 5px;
-  }
-
-  .notes {
-    background-color: #F9F8E8;
-    border: medium inset #DEE5E5;
-    display: inline-block;
-    justify-content: center;
-    width: 40%;
-    margin-bottom: 10px;
   }
 </style>
