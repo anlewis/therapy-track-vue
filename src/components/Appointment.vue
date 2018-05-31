@@ -4,11 +4,14 @@
       <h2><strong>{{appointment.summary}}</strong></h2>
 
       <p class="card-text"><strong>{{formatDate(appointment.start_time)}}</strong></p>
-      <p class="card-text">{{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}</p>
+      <p class="card-text">
+        {{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}
+      </p>
       <p class="card-text">Location: {{appointment.location}}</p>
       <p class="card-text">{{appointment.description}}</p>
 
-      <b-button :to="{ name: 'AppointmentUpdate', params: { id: appointment.id }}" variant="warning">
+      <b-button :to="{ name: 'AppointmentUpdate',
+        params: { id: appointment.id }}" variant="warning">
         Update
       </b-button>
 
