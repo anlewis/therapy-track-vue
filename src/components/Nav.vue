@@ -27,7 +27,7 @@
           <b-dropdown-item href="/reports">Report History</b-dropdown-item>
         </b-nav-item-dropdown>
 
-        <b-nav-item href="/sign-out">Sign Out</b-nav-item>
+        <b-nav-item :to="{ name: 'SignOut' }">Sign Out</b-nav-item>
 
       </b-navbar-nav>
 

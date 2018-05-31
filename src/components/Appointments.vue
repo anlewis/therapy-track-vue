@@ -10,7 +10,9 @@
       <b-card class="mb-2">
         <h2><strong>{{appointment.summary}}</strong></h2>
         <p class="card-text">{{formatDate(appointment.start_time)}}</p>
-        <p class="card-text">{{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}</p>
+        <p class="card-text">
+          {{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}
+        </p>
         <b-button :to="{ name: 'Appointment', params: { id: appointment.id }}" variant="primary">
           Details
         </b-button>
