@@ -1,13 +1,18 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+
 import Home from '@/components/Home';
 import SignIn from '@/components/SignIn';
 import SignOut from '@/components/SignOut';
+
 import Appointments from '@/components/Appointments';
 import Appointment from '@/components/Appointment';
 import AppointmentNew from '@/components/AppointmentNew';
 import AppointmentUpdate from '@/components/AppointmentUpdate';
 import AppointmentDelete from '@/components/AppointmentDelete';
+
+import ReportNew from '@/components/ReportNew';
+import ReportBasicNew from '@/components/ReportBasicNew';
 
 Vue.use(Router);
 
@@ -52,6 +57,16 @@ export default new Router({
       path: '/appointments/:id/delete',
       name: 'AppointmentDelete',
       component: AppointmentDelete,
+    },
+    {
+      path: '/reports/new',
+      name: 'ReportNew',
+      component: ReportNew,
+    },
+    {
+      path: '/reports/basic/new',
+      name: 'ReportBasicNew',
+      component: ReportBasicNew,
     },
   ],
 });

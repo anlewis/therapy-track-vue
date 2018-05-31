@@ -23,7 +23,7 @@
         </b-nav-item-dropdown>
 
         <b-nav-item-dropdown text="Reports" right>
-          <b-dropdown-item href="reports/new">New Report</b-dropdown-item>
+          <b-dropdown-item :to="{ name: 'ReportNew' }">New Report</b-dropdown-item>
           <b-dropdown-item href="/reports">Report History</b-dropdown-item>
         </b-nav-item-dropdown>
 
