@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '@/components/Home';
 import SignIn from '@/components/SignIn';
+import SignOut from '@/components/SignOut';
 import Appointments from '@/components/Appointments';
 import Appointment from '@/components/Appointment';
 import AppointmentNew from '@/components/AppointmentNew';
@@ -21,6 +22,11 @@ export default new Router({
       path: '/sign-in',
       name: 'SignIn',
       component: SignIn,
+    },
+    {
+      path: '/sign-out',
+      name: 'SignOut',
+      component: SignOut,
     },
     {
       path: '/appointments',
