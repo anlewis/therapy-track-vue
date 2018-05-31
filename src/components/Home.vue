@@ -1,12 +1,12 @@
 <template>
   <div class="home">
     <h1>Welcome to Therapy Track!</h1>
-    <router-link class="sign-in-link" :to="{ name: 'SignIn' }">
+    <b-button to="sign-in" variant="success">
       Sign In
-    </router-link>
-    <router-link class="sign-up-link" :to="{ name: 'SignUp' }">
+    </b-button>
+    <b-button to="sign-up" variant="primary">
       Sign Up
-    </router-link>
+    </b-button>
   </div>
 </template>
 

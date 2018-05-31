@@ -6,14 +6,13 @@
     <p>Location: {{appointment.location}}</p>
     <p class="notes">{{appointment.description}}</p>
     <br/>
-    <router-link class="update-link" :to="{ name: 'AppointmentUpdate',
-      params: { id: appointment.id } }">
+    <b-button :to="{ name: 'AppointmentUpdate', params: { id: appointment.id }}" variant="warning">
       Update
-    </router-link>
-    <router-link class="delete-link" :to="{ name: 'AppointmentDelete',
-      params: { id: appointment.id } }">
+    </b-button>
+
+    <b-button :to="{ name: 'AppointmentNew', params: { id: appointment.id }}" variant="danger">
       Delete
-    </router-link>
+    </b-button>
   </div>
 </template>
 
