@@ -38,7 +38,7 @@ export default {
         this.appointments = response.data;
       })
       .catch((e) => {
-        this.error.push(e);
+        this.errors.push(e);
       });
   },
   methods: {

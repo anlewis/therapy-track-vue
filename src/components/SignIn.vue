@@ -1,5 +1,5 @@
 <template>
-  <div class="sign-up">
+  <div class="sign-in">
     <h1>Please Sign In</h1>
 
     <form class="vue-form" @submit.prevent="handleSubmit">
