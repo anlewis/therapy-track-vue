@@ -1,17 +1,21 @@
 <template>
   <div class="appointments">
     <h1 class="title">Appointments</h1>
-      <b-button :to="{ name: 'AppointmentNew' }" variant="success">
-        New Appointment
-      </b-button>
-      <div v-for="(appointment) in appointments" :key="appointment.id" class="appointment">
+
+    <b-button :to="{ name: 'AppointmentNew' }" variant="success">
+      New Appointment
+    </b-button>
+
+    <div v-for="(appointment) in appointments" :key="appointment.id" class="appointment">
+      <b-card class="mb-2">
         <h2><strong>{{appointment.summary}}</strong></h2>
-        <p>{{formatDate(appointment.start_time)}}</p>
-        <p>{{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}</p>
+        <p class="card-text">{{formatDate(appointment.start_time)}}</p>
+        <p class="card-text">{{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}</p>
         <b-button :to="{ name: 'Appointment', params: { id: appointment.id }}" variant="primary">
           Details
         </b-button>
-      </div>
+      </b-card>
+    </div>
   </div>
 </template>
 
@@ -61,11 +65,11 @@ export default {
     background-color: #DEE5E5;
   }
 
-  .appointment {
+  /* .appointment {
     background-color: #F9F8E8;
     border: thick double #58808F;
     margin: 5% 5%;
-  }
+  } */
 
   p {
     margin: 5px;

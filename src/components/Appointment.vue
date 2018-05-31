@@ -1,18 +1,21 @@
 <template>
   <div class="appointment">
-    <h2><strong>{{appointment.summary}}</strong></h2>
-    <p><strong>{{formatDate(appointment.start_time)}}</strong></p>
-    <p>{{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}</p>
-    <p>Location: {{appointment.location}}</p>
-    <p class="notes">{{appointment.description}}</p>
-    <br/>
-    <b-button :to="{ name: 'AppointmentUpdate', params: { id: appointment.id }}" variant="warning">
-      Update
-    </b-button>
+    <b-card class="mb-2">
+      <h2><strong>{{appointment.summary}}</strong></h2>
 
-    <b-button :to="{ name: 'AppointmentNew', params: { id: appointment.id }}" variant="danger">
-      Delete
-    </b-button>
+      <p class="card-text"><strong>{{formatDate(appointment.start_time)}}</strong></p>
+      <p class="card-text">{{formatTime(appointment.start_time)}} - {{formatTime(appointment.end_time)}}</p>
+      <p class="card-text">Location: {{appointment.location}}</p>
+      <p class="card-text">{{appointment.description}}</p>
+
+      <b-button :to="{ name: 'AppointmentUpdate', params: { id: appointment.id }}" variant="warning">
+        Update
+      </b-button>
+
+      <b-button :to="{ name: 'AppointmentNew', params: { id: appointment.id }}" variant="danger">
+        Delete
+      </b-button>
+    </b-card>
   </div>
 </template>
 
@@ -57,12 +60,6 @@ export default {
 <style>
   body {
     background-color: #DEE5E5;
-  }
-
-  .appointment {
-    background-color: #F9F8E8;
-    border: thick double #58808F;
-    margin: 5% 5%;
   }
 
   p {
