@@ -70,10 +70,8 @@ Linting is done by [Airbnb ESLint](https://github.com/airbnb/javascript).
 
 OAuth 2.0 for Google setup through [Rich on Rails](https://richonrails.com/articles/google-authentication-in-ruby-on-rails/)
 
-Google Calendar API setup following the guide [ReadySteadyCode](https://readysteadycode.com/howto-integrate-google-calendar-with-rails)
-
-For stub_omniauth and testing [Jesse Spevack](http://www.jessespevack.com/blog/2016/10/16/how-to-test-drive-omniauth-google-oauth2-for-your-rails-app)
-
 Creating an app with Rails API backend VueJS frontend [Simon Cooper](https://medium.com/@sfcooper/creating-an-app-with-rails-api-backend-vuejs-frontend-403d2df61dab)
+
+Customizing Bootstrap [Bjorn](https://medium.com/@BjornKrols/integrating-and-customising-bootstrap-4-in-vue-js-cbc29ba7688e)
 
 Advice on Psychology Assessments give by [Elena Kronmiller](https://www.linkedin.com/in/elena-kronmiller-a91679121/)

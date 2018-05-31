@@ -12,11 +12,12 @@ export default {
   name: 'App',
   components: {
     Nav,
-  }
+  },
 };
 </script>
 
 <style lang='scss'>
+@import './styles/custom-bootstrap.scss';
 @import '../node_modules/bootstrap/scss/bootstrap.scss';
 
 #app {
