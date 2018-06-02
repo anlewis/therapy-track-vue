@@ -38,8 +38,7 @@ export default {
           end_date: this.form.end_date,
         })
         .then((report) => {
-          console.log({report})
-          router.push({ name: 'ReportBasicNew', params: { report_id: report.data.id }});
+          router.push({ name: 'ReportBasicNew', params: { report_id: report.data.id } });
         })
         .catch((e) => {
           this.error.push(e);

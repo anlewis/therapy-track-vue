@@ -93,8 +93,7 @@ export default {
           avg_daily_exercise: this.form.avgDailyExercise,
         })
         .then((wellness) => {
-          console.log({wellness});
-          router.push({ name: 'ReportWellnessNew', params: { report_id: wellness.data.report_id }})
+          router.push({ name: 'ReportWellnessNew', params: { report_id: wellness.data.report_id } });
         })
         .catch((e) => {
           this.error.push(e);

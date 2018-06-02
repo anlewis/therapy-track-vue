@@ -83,7 +83,7 @@ export default {
           notes: this.form.notes,
         })
         .then((basic) => {
-          router.push({ name: 'ReportWellnessNew', params: { report_id: basic.data.report_id }})
+          router.push({ name: 'ReportWellnessNew', params: { report_id: basic.data.report_id } });
         })
         .catch((e) => {
           this.error.push(e);
