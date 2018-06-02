@@ -1,12 +1,12 @@
 <template>
-  <div class="appointmentNew">
-    <h2>New Appointment Details</h2>
+  <div class="basicNew">
+    <h2>Basic Info</h2>
     <b-form @submit.prevent="handleSubmit">
       <b-form-group id="oxygenInputGroup"
                     label="Oxygen"
                     label-for="oxygen">
         <b-form-input id="oxygenInput"
-                      type="integer"
+                      type="number"
                       v-model="form.oxygen"
                       placeholder="Enter oxygen saturation">
         </b-form-input>
@@ -15,7 +15,7 @@
                     label="Temperature"
                     label-for="temperature">
         <b-form-input id="temperatureInput"
-                      type="integer"
+                      type="number"
                       v-model="form.temperature"
                       placeholder="Enter temperature">
         </b-form-input>
@@ -24,7 +24,7 @@
                     label="Systolic Blood Pressure"
                     label-for="systolic">
         <b-form-input id="systolicInput"
-                      type="integer"
+                      type="number"
                       v-model="form.systolic"
                       placeholder="Enter systolic blood pressure">
         </b-form-input>
@@ -33,7 +33,7 @@
                     label="Diastolic Blood Pressure"
                     label-for="diastolic">
         <b-form-input id="diastolicInput"
-                      type="integer"
+                      type="number"
                       v-model="form.diastolic"
                       placeholder="Enter diastolic blood pressure">
         </b-form-input>
@@ -55,6 +55,7 @@
 
 <script>
 import axios from '@/backend/axios';
+import router from '../router';
 
 export default {
   data() {
@@ -74,14 +75,15 @@ export default {
     handleSubmit() {
       this.form.submitted = true;
       axios.post(
-        'http://localhost:3000/api/v1/reports/basic/new', {
-          oxygen: '',
-          temperature: '',
-          systolic: '',
-          diastolic: '',
-          notes: '',
+        `http://localhost:3000/api/v1/reports/${this.$route.params.report_id}/basic`, {
+          oxygen: this.form.oxygen,
+          temperature: this.form.temperature,
+          systolic: this.form.systolic,
+          diastolic: this.form.diastolic,
+          notes: this.form.notes,
         })
-        .then(() => {
+        .then((basic) => {
+          router.push({ name: 'ReportWellnessNew', params: { report_id: basic.data.report_id }})
         })
         .catch((e) => {
           this.error.push(e);

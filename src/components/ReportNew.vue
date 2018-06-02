@@ -1,5 +1,5 @@
 <template>
-  <div class="appointmentNew">
+  <div class="reportNew">
     <h2>New Report</h2>
     <b-form inline @submit.prevent="handleSubmit">
       <b-input-group class="mb-2 ml-sm-2 mr-sm-2 mb-sm-0">
@@ -9,7 +9,7 @@
       <b-input-group class="mb-2 ml-sm-2 mr-sm-2 mb-sm-0">
         <b-input id="endInput" type="date" v-model="form.end_date"/>
       </b-input-group>
-      <b-button variant="primary">Start Report</b-button>
+      <b-button type="submit" variant="primary">Start Report</b-button>
     </b-form>
   </div>
 </template>
@@ -37,8 +37,9 @@ export default {
           start_date: this.form.start_date,
           end_date: this.form.end_date,
         })
-        .then(() => {
-          router.push({ name: 'ReportBasicNew' });
+        .then((report) => {
+          console.log({report})
+          router.push({ name: 'ReportBasicNew', params: { report_id: report.data.id }});
         })
         .catch((e) => {
           this.error.push(e);

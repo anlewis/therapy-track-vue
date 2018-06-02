@@ -13,6 +13,7 @@ import AppointmentDelete from '@/components/AppointmentDelete';
 
 import ReportNew from '@/components/ReportNew';
 import ReportBasicNew from '@/components/ReportBasicNew';
+import ReportWellnessNew from '@/components/ReportWellnessNew';
 
 Vue.use(Router);
 
@@ -64,9 +65,14 @@ export default new Router({
       component: ReportNew,
     },
     {
-      path: '/reports/basic/new',
+      path: '/reports/:report_id/basic-info',
       name: 'ReportBasicNew',
       component: ReportBasicNew,
+    },
+    {
+      path: '/reports/:report_id/wellness-info',
+      name: 'ReportWellnessNew',
+      component: ReportWellnessNew,
     },
   ],
 });
