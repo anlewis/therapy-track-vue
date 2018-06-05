@@ -15,6 +15,7 @@ import ReportNew from '@/components/ReportNew';
 import ReportBasicNew from '@/components/ReportBasicNew';
 import ReportWellnessNew from '@/components/ReportWellnessNew';
 import ReportAnxietyNew from '@/components/ReportAnxietyNew';
+import ReportDepressionNew from '@/components/ReportDepressionNew';
 
 Vue.use(Router);
 
@@ -79,6 +80,11 @@ export default new Router({
       path: '/reports/:report_id/anxiety-screening',
       name: 'ReportAnxietyNew',
       component: ReportAnxietyNew,
+    },
+    {
+      path: '/reports/:report_id/depression-screening',
+      name: 'ReportDepressionNew',
+      component: ReportDepressionNew,
     },
   ],
 });

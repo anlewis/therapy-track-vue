@@ -1,22 +1,22 @@
 <template>
   <div class="anxietyNew">
-    <h2>Generalized Anxiety Disorder 7-item (GAD-7) scale</h2>
+    <h2>Generalized Anxiety Disorder 7-item (GAD-7)</h2>
     <b-form @submit.prevent="handleSubmit">
       <b-table striped hover :items="items">
         <template slot="not_at_all" slot-scope="row">
-          <b-form-radio v-model="row.zero">
+          <b-form-radio>
           </b-form-radio>
         </template>
         <template slot="several_days" slot-scope="row">
-          <b-form-radio v-model="row.one">
+          <b-form-radio>
           </b-form-radio>
         </template>
         <template slot="over_half_the_days" slot-scope="row">
-          <b-form-radio v-model="row.two">
+          <b-form-radio>
           </b-form-radio>
         </template>
         <template slot="nearly_every_day" slot-scope="row">
-          <b-form-radio v-model="row.three">
+          <b-form-radio>
           </b-form-radio>
         </template>
       </b-table>
@@ -112,7 +112,7 @@ export default {
           difficulty_level: this.form.difficulty_level,
         })
         .then((anxiety) => {
-          router.push({ name: 'ReportWellnessNew', params: { report_id: anxiety.data.report_id } });
+          router.push({ name: 'ReportDepressionNew', params: { report_id: anxiety.data.report_id } });
         })
         .catch((e) => {
           this.error.push(e);

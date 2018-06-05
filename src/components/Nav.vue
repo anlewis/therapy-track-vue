@@ -44,4 +44,9 @@ export default {
 </script>
 
 <style>
+
+nav.navbar {
+  margin-bottom: 2%;
+}
+
 </style>
