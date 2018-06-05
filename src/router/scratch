@@ -1,0 +1,16 @@
+  data() {
+    return {
+      form: {
+        q1: '',
+        q2: '',
+        q3: '',
+        q4: '',
+        q5: '',
+        q6: '',
+        q7: '',
+        difficulty_level: '',
+        submitted: false,
+        errors: [],
+      },
+    };
+  },
