@@ -11,6 +11,7 @@ import AppointmentNew from '@/components/AppointmentNew';
 import AppointmentUpdate from '@/components/AppointmentUpdate';
 import AppointmentDelete from '@/components/AppointmentDelete';
 
+import Report from '@/components/Report';
 import ReportNew from '@/components/ReportNew';
 import ReportBasicNew from '@/components/ReportBasicNew';
 import ReportWellnessNew from '@/components/ReportWellnessNew';
@@ -85,6 +86,11 @@ export default new Router({
       path: '/reports/:report_id/depression-screening',
       name: 'ReportDepressionNew',
       component: ReportDepressionNew,
+    },
+    {
+      path: '/reports/:report_id',
+      name: 'Report',
+      component: Report,
     },
   ],
 });
