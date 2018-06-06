@@ -2,34 +2,74 @@
   <div class="anxietyNew">
     <h2>Generalized Anxiety Disorder 7-item (GAD-7)</h2>
     <b-form @submit.prevent="handleSubmit">
-      <b-table striped hover :items="items">
-        <template slot="not_at_all" slot-scope="row">
-          <b-form-radio>
-          </b-form-radio>
-        </template>
-        <template slot="several_days" slot-scope="row">
-          <b-form-radio>
-          </b-form-radio>
-        </template>
-        <template slot="over_half_the_days" slot-scope="row">
-          <b-form-radio>
-          </b-form-radio>
-        </template>
-        <template slot="nearly_every_day" slot-scope="row">
-          <b-form-radio>
-          </b-form-radio>
-        </template>
-      </b-table>
-      <b-form-group 
-      label="If you checked off any problems, how difficult have these made it for you to do your work, take
-  care of things at home, or get along with other people?">
-        <b-form-radio-group :options="options"
-                            name="q7">
+      <b-form-group label="1. Feeling nervous, anxious, or on edge" class="question">
+        <b-form-radio-group stacked v-model="form.q1">
+          <b-form-radio value="0">Not at all</b-form-radio>
+          <b-form-radio value="1">Several days</b-form-radio>
+          <b-form-radio value="2">Over half the days</b-form-radio>
+          <b-form-radio value="3">Nearly every day </b-form-radio>
+        </b-form-radio-group>
+      </b-form-group>
+            <b-form-group label="2. Not being able to stop or control worrying" class="question">
+        <b-form-radio-group stacked v-model="form.q2">
+          <b-form-radio value="0">Not at all</b-form-radio>
+          <b-form-radio value="1">Several days</b-form-radio>
+          <b-form-radio value="2">Over half the days</b-form-radio>
+          <b-form-radio value="3">Nearly every day </b-form-radio>
+        </b-form-radio-group>
+      </b-form-group>
+      <b-form-group label="3. Worrying too much about different things" class="question">
+        <b-form-radio-group stacked v-model="form.q3">
+          <b-form-radio value="0">Not at all</b-form-radio>
+          <b-form-radio value="1">Several days</b-form-radio>
+          <b-form-radio value="2">Over half the days</b-form-radio>
+          <b-form-radio value="3">Nearly every day </b-form-radio>
+        </b-form-radio-group>
+      </b-form-group>
+      <b-form-group label="4. Trouble relaxing" class="question">
+        <b-form-radio-group stacked v-model="form.q4">
+          <b-form-radio value="0">Not at all</b-form-radio>
+          <b-form-radio value="1">Several days</b-form-radio>
+          <b-form-radio value="2">Over half the days</b-form-radio>
+          <b-form-radio value="3">Nearly every day </b-form-radio>
+        </b-form-radio-group>
+      </b-form-group>
+      <b-form-group label="5. Being so restless that it's hard to sit still" class="question">
+        <b-form-radio-group stacked v-model="form.q5">
+          <b-form-radio value="0">Not at all</b-form-radio>
+          <b-form-radio value="1">Several days</b-form-radio>
+          <b-form-radio value="2">Over half the days</b-form-radio>
+          <b-form-radio value="3">Nearly every day </b-form-radio>
+        </b-form-radio-group>
+      </b-form-group>
+      <b-form-group label="6. Becoming easily annoyed or irritable" class="question">
+        <b-form-radio-group stacked v-model="form.q6">
+          <b-form-radio value="0">Not at all</b-form-radio>
+          <b-form-radio value="1">Several days</b-form-radio>
+          <b-form-radio value="2">Over half the days</b-form-radio>
+          <b-form-radio value="3">Nearly every day </b-form-radio>
+        </b-form-radio-group>
+      </b-form-group>
+      <b-form-group label="7. Feeling afraid as if something awful might happen" class="question">
+        <b-form-radio-group stacked v-model="form.q7">
+          <b-form-radio value="0">Not at all</b-form-radio>
+          <b-form-radio value="1">Several days</b-form-radio>
+          <b-form-radio value="2">Over half the days</b-form-radio>
+          <b-form-radio value="3">Nearly every day </b-form-radio>
+        </b-form-radio-group>
+      </b-form-group>
+      <b-form-group class="question"
+        label="If you checked off any problems, how difficult have these made it for you to do your work, take
+              care of things at home, or get along with other people?">
+        <b-form-radio-group stacked v-model="form.difficulty_level">
+          <b-form-radio value="0">Not difficult at all</b-form-radio>
+          <b-form-radio value="1">Somewhat difficult</b-form-radio>
+          <b-form-radio value="2">Very difficult</b-form-radio>
+          <b-form-radio value="3">Extremely difficult</b-form-radio>
         </b-form-radio-group>
       </b-form-group>
       <b-button type="submit" variant="success">Save Answers</b-button>
     </b-form>
-
   </div>
 </template>
 
@@ -37,69 +77,27 @@
 import axios from '@/backend/axios';
 import router from '../router';
 
-const items = [
-  { over_the_last_2_weeks_how_often_have_you_been_bothered_by_the_following_problems:
-      '1. Feeling nervous, anxious, or on edge',
-    not_at_all: true,
-    several_days: true,
-    over_half_the_days: true,
-    nearly_every_day:true,
-  }, { over_the_last_2_weeks_how_often_have_you_been_bothered_by_the_following_problems:
-      '2. Not being able to stop or control worrying',
-    not_at_all: true,
-    several_days: true,
-    over_half_the_days: true,
-    nearly_every_day:true,
-  }, { over_the_last_2_weeks_how_often_have_you_been_bothered_by_the_following_problems:
-      '3. Worrying too much about different things',
-    not_at_all: true,
-    several_days: true,
-    over_half_the_days: true,
-    nearly_every_day:true,
-      }, { over_the_last_2_weeks_how_often_have_you_been_bothered_by_the_following_problems:
-      '4. Trouble relaxing',
-    not_at_all: true,
-    several_days: true,
-    over_half_the_days: true,
-    nearly_every_day:true,
-  }, { over_the_last_2_weeks_how_often_have_you_been_bothered_by_the_following_problems:
-      "5. Being so restless it's hard  to sit still",
-    not_at_all: true,
-    several_days: true,
-    over_half_the_days: true,
-    nearly_every_day:true,
-  }, { over_the_last_2_weeks_how_often_have_you_been_bothered_by_the_following_problems:
-      '6. Becoming easily annoyed or irritable',
-    not_at_all: true,
-    several_days: true,
-    over_half_the_days: true,
-    nearly_every_day:true,
-  }, { over_the_last_2_weeks_how_often_have_you_been_bothered_by_the_following_problems:
-      '7. Feeling afraid as if something awful might happen',
-    not_at_all: true,
-    several_days: true,
-    over_half_the_days: true,
-    nearly_every_day:true,
-  },
-];
-
-const options = [
-  { text: 'Not difficult at all' },
-  { text: 'Somewhat difficult' },
-  { text: 'Very difficult' },
-  { text: 'Extremely difficult' },
-]
-
 export default {
   data() {
     return {
-      items,
-      options
+      form: {
+        q1: '',
+        q2: '',
+        q3: '',
+        q4: '',
+        q5: '',
+        q6: '',
+        q7: '',
+        difficulty_level: '',
+        submitted: false,
+        errors: [],
+      },
     };
   },
   methods: {
     handleSubmit() {
       this.form.submitted = true;
+      console.log(this.form.q1)
       axios.post(
         `http://localhost:3000/api/v1/reports/${this.$route.params.report_id}/anxiety`, {
           q1: this.form.q1,
@@ -123,4 +121,10 @@ export default {
 </script>
 
 <style>
+
+.question {
+  text-align: left;
+  margin: 2% 5%;
+}
+
 </style>

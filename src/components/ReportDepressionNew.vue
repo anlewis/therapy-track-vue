@@ -203,8 +203,6 @@ import router from '../router';
 export default {
   data() {
     return {
-      items,
-      options
     };
   },
   methods: {
